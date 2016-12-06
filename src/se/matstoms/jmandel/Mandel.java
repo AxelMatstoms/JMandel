@@ -40,12 +40,25 @@ public class Mandel {
                     double newI = i + 1 - nu;
                     newI = Math.log(newI) / log2;
                     
-                    float hue = (float) ((newI % 6f) / 6f);
-                    g2d.setColor(Color.getHSBColor(hue, 1, 1));
+                    int r = 0,
+                        g = 0,
+                        b = 0;
+                    
+                    if (newI < 64) {
+                        b = (int) (128 + 2 * newI);
+                        g = (int) (4 * newI);
+                        b = (int) (4 * newI);
+                    } else if (newI < 128) {
+                        newI -= 64;
+                        
+                    }
+                    
+                    
+                    /*float hue = (float) ((newI % 6f) / 6f);
+                    g2d.setColor(Color.getHSBColor(hue, 1, 1));*/
                 }
 
 
-                //g2d.setColor(new Color(Math.max(0,r),Math.max(0,g),Math.max(0,b)));
                 g2d.fillRect(x, y, 1, 1);
             }
         }
