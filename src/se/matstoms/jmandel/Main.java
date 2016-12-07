@@ -18,7 +18,7 @@ public class Main {
         //        new Complex(-0.03686424669341982, -0.6665052996134107), 4096, 8192); //curly
 	BufferedImage buf = Mandel.makeMandel(new Complex(-2, -2), new Complex(2, 2), 8192, 2048); //normal
         try {
-            File output = new File("output.png");
+            File output = new File("output2.png");
             ImageIO.write(buf, "png", output);
             System.out.println("done!");
         } catch (IOException e) {

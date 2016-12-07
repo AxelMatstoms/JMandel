@@ -39,21 +39,48 @@ public class Mandel {
                     double nu = Math.log(logZn / log2) / log2;
                     double newI = i + 1 - nu;
                     newI = Math.log(newI) / log2;
+                    newI *= 2;
+                    
+                    
                     
                     int r = 0,
                         g = 0,
                         b = 0;
                     
-                    if (newI < 64) {
-                        b = (int) (128 + 2 * newI);
-                        g = (int) (4 * newI);
-                        b = (int) (4 * newI);
-                    } else if (newI < 128) {
-                        newI -= 64;
-                        
+                    if (newI < 8) {
+                        g = (int) (32 * newI);
+                        b = g;
+                    } else {
+                        newI %= 16;
+                        if (newI < 8) {
+                            g = 64 + (int) (24 * newI);
+                        } else if (newI < 16) {
+                            newI -= 8;
+                            g = 255 - (int) (24 * newI);
+                        }
+                        b = g;
                     }
                     
                     
+                    /*if (newI < 8) {
+                        r = (int) (32 * newI);
+                        g = (int) (32 * newI);
+                        b = (int) (128 + 16 * newI);
+                    } else if (newI < 16) {
+                        newI -= 8;
+                        r = 255;
+                        g = 255 - (int) (16 * newI);
+                        b = 255 - (int) (32 * newI);
+                    } else if (newI < 24) {
+                        newI -= 16;
+                        r = 255 - (int) (32 * newI);
+                        g = 128 - (int) (16 * newI);
+                        b = (int) (16 * newI);
+                    }*/
+                    
+                    
+                    
+                    g2d.setColor(new Color(r, g, b));
                     /*float hue = (float) ((newI % 6f) / 6f);
                     g2d.setColor(Color.getHSBColor(hue, 1, 1));*/
                 }
