@@ -47,7 +47,7 @@ public class Mandel {
                         g = 0,
                         b = 0;
                     
-                    if (newI < 8) {
+                    /*if (newI < 8) {
                         g = (int) (32 * newI);
                         b = g;
                     } else {
@@ -59,6 +59,22 @@ public class Mandel {
                             g = 255 - (int) (24 * newI);
                         }
                         b = g;
+                    }*/
+                    newI %= 24;
+                    double cI = newI;
+                    if (newI < 8) {
+                        r = 128 + (int)(newI * 16);
+                        b = 255;
+                    } else if (newI < 16) {
+                        newI -= 8;
+                        r = 255 - (int)(newI * 32);
+                        g = (int)(newI * 32);
+                        b = 255;
+                    } else if (newI < 24) {
+                        newI -= 16;
+                        r = (int)(newI * 16);
+                        g = 255 - (int)(newI * 32);
+                        b = 255;
                     }
                     
                     
@@ -80,7 +96,11 @@ public class Mandel {
                     
                     
                     
-                    g2d.setColor(new Color(r, g, b));
+                    try {
+                        g2d.setColor(new Color(r, g, b));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("{newI:" + cI + ",r:" + r + ",g:" + g + "b:" + b + "}");
+                    }
                     /*float hue = (float) ((newI % 6f) / 6f);
                     g2d.setColor(Color.getHSBColor(hue, 1, 1));*/
                 }
