@@ -26,6 +26,10 @@ public class Complex {
         double ri = ar * bi + br * ai;
         return new Complex(rr, ri);
     }
+    
+    public Complex mult(double x) {
+        return new Complex(this.r * x, this.i * x);
+    }
 
     public Complex add(Complex c) {
         double ar = this.r;

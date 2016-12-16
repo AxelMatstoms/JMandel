@@ -27,4 +27,18 @@ public class Main {
         long end = System.currentTimeMillis();
         System.out.println(end - start + "ms");
     }
+    
+    static void makeZoom(Complex center, double zoom, int millis) {
+        Complex min = new Complex(center.real() - 4, center.imag() - 4);
+        Complex max = new Complex(center.real() + 4, center.imag() + 4);
+        
+        double mindist = 4d / zoom;
+        
+        
+        while (max.real() - min.real() < mindist) {
+            
+            
+            
+        }
+    }
 }
